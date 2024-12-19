@@ -3,6 +3,8 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     margin: auto;
+    background: linear-gradient(to right, rgb(31, 138, 61), rgb(11, 203, 177));
+    color: white;
 }
 
 .title{
@@ -37,6 +39,7 @@ body {
     cursor: pointer;
     border-radius: 5px;
     box-shadow: 0 3px  5px rgba(58, 64, 57, 0.464);
+    border: none;
 }
 
 .question button.selected {
@@ -84,7 +87,7 @@ body {
 }
 
 .confirm:hover{
-    box-shadow: 0 0 0 10px;
+    box-shadow: 0 0 10px black;
     cursor: pointer;
 }
 
