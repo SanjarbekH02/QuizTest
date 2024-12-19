@@ -1,13 +1,13 @@
 const questions = [
     { id: 1, question: "HTMLda asosiy sarlavha uchun qaysi teg ishlatiladi?", options: ["<h1>", "<p>", "<div>", "<span>"], correct: "<h1>" },
     { id: 2, question: "CSSda rangni o'zgartirish uchun qaysi xususiyat ishlatiladi?", options: ["color", "font-size", "background", "margin"], correct: "color" },
-    { id: 3, question: "JavaScriptda funksiyani qanday e'lon qilasiz?", options: ["function myFunc()", "let myFunc = ()", "myFunc() => {}", "Barchasi to'g'ri"], correct: "Barchasi to'g'ri" },
-    { id: 4, question: "HTMLda linkni qaysi teg bilan yaratamiz?", options: ["<a>", "<link>", "<url>", "<href>"], correct: "<a>" },
-    { id: 5, question: "CSSda font o'lchamini o'zgartirish uchun qaysi xususiyat ishlatiladi?", options: ["font-size", "font-family", "text-align", "color"], correct: "font-size" },
-    { id: 6, question: "JavaScriptda massivni qanday e'lon qilamiz?", options: ["[]", "{}", "new Array()", "Ikki javob to'g'ri"], correct: "Ikki javob to'g'ri" },
-    { id: 7, question: "HTML form elementlari ichida qaysi teg matnli kiritish uchun ishlatiladi?", options: ["<input>", "<textarea>", "<button>", "<select>"], correct: "<input>" },
-    { id: 8, question: "CSSda bo'sh joy qo'shish uchun qaysi xususiyat ishlatiladi?", options: ["padding", "margin", "space", "border"], correct: "padding" },
-    { id: 9, question: "JavaScriptda qiymatlarni solishtirish uchun qaysi operator ishlatiladi?", options: ["==", "===", "!=", "Barchasi"], correct: "Barchasi" },
+    { id: 3, question: "HTMLda linkni qaysi teg bilan yaratamiz?", options: ["<a>", "<link>", "<url>", "<href>"], correct: "<a>" },
+    { id: 4, question: "a tegida href atributida telifon raqam  to'g'ri yozilgan elementni ko'rsating", options: ["href='tel/+998941234567'", "href='https://+998941234567", "href='tell:+998941234567", "href='tel:+998941234567'"], correct: "href='tel:+998941234567'" },
+    { id: 5, question: "CSSda harflarni katta harf yoki kichkina harfga o'tkazish uchun qaysi hususiyat ishlatiladi?", options: ["text-align", "text-transform", "text-decoration", "list-style"], correct: "text-transform" },
+    { id: 6, question: "div qanday teg", options: ["inline", "inline-block", "block", "Hamma javob to'g'ri"], correct: "block" },
+    { id: 7, question: "O'ziga ichkarida joy ajratish uchun CSSda qaysi hususiyat ishlatiladi", options: ["margin", "padding", "margin-top", "<br>"], correct: "padding" },
+    { id: 8, question: "HTMLda qo'shtirnoq ichida alohida ajratib ko'satish uchun qaysi tegdan foydalaniladi", options: ["<p>", "<blockquote> ", "<q>", "<ins>"], correct: "<q>" },
+    { id: 9, question: "CSSda rang berishning necha xil usuli bor?", options: ["2", "4", "5", "3"], correct: "4" },
     { id: 10, question: "HTMLda ro'yxatni yaratish uchun qaysi teg ishlatiladi?", options: ["<ul>", "<ol>", "<li>", "Ikki javob to'g'ri"], correct: "Ikki javob to'g'ri" },
 ];
 
@@ -45,10 +45,36 @@ questions.forEach(q => {
     quizContainer.appendChild(questionDiv);
 });
 
+// toast
+function showToast(message, type = 'success') {
+    const toastContainer = document.getElementById('toastContainer');
+
+    // Yangi toast elementi yaratish
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`; // Xabar turiga mos klass qo'shish
+    toast.textContent = message;
+
+    // Toastni konteynerga qo'shish
+    toastContainer.appendChild(toast);
+
+    // Ko'rinadigan qilish
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 10);
+
+    // Bir necha soniyadan keyin yo'q qilish
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+            toast.remove();
+        }, 300); // Animatsiya vaqtiga teng
+    }, 3000); // 3 soniya davomiylik
+}
+
 finishButton.onclick = async () => {
     const username = usernameInput.value.trim();
     if (!username) {
-        alert('Iltimos, ismingizni kiriting!');
+        showToast('Iltimos, ismingizni kiriting!', 'error'); // Xato rang bilan
         return;
     }
 
@@ -69,7 +95,6 @@ finishButton.onclick = async () => {
         }
     });
 
-    resultContainer.style.display = 'block';
     resultContainer.innerHTML = `Ism: ${username} <br> To'g'ri javoblar: ${correctCount} <br> Noto'g'ri javoblar: ${incorrectCount}`;
 
     // Telegramga yuborish
@@ -82,9 +107,11 @@ finishButton.onclick = async () => {
                 text: `Ism: ${username}\nTo'g'ri javoblar: ${correctCount}\nNoto'g'ri javoblar: ${incorrectCount}`
             })
         });
-        alert('Natijalar Telegramga yuborildi!');
+        showToast('Natijalar Telegramga yuborildi!', 'success'); // Muvaffaqiyat rang bilan
     } catch (error) {
-        alert('Natijalarni Telegramga yuborishda xatolik yuz berdi!');
+        showToast('Natijalarni Telegramga yuborishda xatolik yuz berdi!', 'error'); // Xato rang bilan
         console.error(error);
     }
+
+    usernameInput.value = ""
 };

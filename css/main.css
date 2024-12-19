@@ -1,12 +1,28 @@
 body {
+    width: 1000px;
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    margin: 20px;
+    margin: auto;
 }
 
 .title{
-    color: greenyellow;
     text-align: center;
+}
+
+.label{
+    font-size: 24px;
+}
+
+.input{
+    width: 80%;
+    font-size: 24px;
+    padding: 3px 10px;
+    color: rgb(72, 9, 244);
+    border: 2px solid rgb(168, 167, 167);
+    border-radius: 10px;
+    outline: none;
+    text-transform: capitalize;
+
 }
 
 .question {
@@ -16,15 +32,16 @@ body {
 .question button {
     margin: 5px;
     padding: 10px 15px;
-    background-color: #f0f0f0;
+    background-color: rgba(41, 193, 217, 0.464);
     border: 1px solid #ccc;
     cursor: pointer;
     border-radius: 5px;
+    box-shadow: 0 3px  5px rgba(58, 64, 57, 0.464);
 }
 
 .question button.selected {
-    background-color: #c8e6c9;
     color: #000;
+    background-color: #5b0b06;
     cursor: not-allowed;
 }
 
@@ -43,9 +60,72 @@ body {
 
 #user-info {
     margin-bottom: 20px;
+    display: block;
+    width: 300px;
+
 }
 
-.result{
-    display: none;
+
+
+.quiz{
+    margin: auto;
+}
+
+.confirm{
+    width: 200px;
+    font-size: 18px;
+    background-color: blue;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 12px;
+    margin: 20px 0 20px 0
+
+}
+
+.confirm:hover{
+    box-shadow: 0 0 0 10px;
+    cursor: pointer;
+}
+
+/* Toast */
+
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .toast {
+    background-color: #f50808;
+    color: #fff;
+    padding: 15px 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     opacity: 0;
-}   
+    transform: translateY(-10px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  
+  .toast.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+
+.toast.success {
+    background-color: #4caf50; /* Yashil rang */
+  }
+  
+  .toast.error {
+    background-color: #f44336; /* Qizil rang */
+  }
+  
+
+  @media only screen and (max-width: 600px){
+    body{
+        width: 100%;
+    }
+  }
