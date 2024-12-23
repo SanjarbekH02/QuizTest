@@ -9,6 +9,8 @@ const questions = [
     { id: 8, question: "HTMLda qo'shtirnoq ichida alohida ajratib ko'satish uchun qaysi tegdan foydalaniladi", options: ["<p>", "<blockquote> ", "<q>", "<ins>"], correct: "<q>" },
     { id: 9, question: "CSSda rang berishning necha xil usuli bor?", options: ["2", "4", "5", "3"], correct: "4" },
     { id: 10, question: "HTMLda ro'yxatni yaratish uchun qaysi teg ishlatiladi?", options: ["<ul>", "<ol>", "<li>", "Ikki javob to'g'ri"], correct: "Ikki javob to'g'ri" },
+    {id: 11, question: "CSSda display flex bo'lsa malumotlarni ustun shaklida qilish uchun qaysi hususiyat ishlatiladi?", options: [ "flex-direction", "flex-wrap", "align-items", "justify-content" ], correct: "flex-direction"},
+    {id: 12, question: "CSSda displayni qaysi hassosi moshlashuvchan qiladi?", options: ["block", "inline", "inline-block", "flex"], correct: "flex"},
 ];
 
 const quizContainer = document.getElementById('quiz');
